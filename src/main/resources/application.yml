@@ -1,0 +1,27 @@
+server:
+  port: 9001
+
+mybatis:
+  configuration:
+    #
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+  mapper-locations: classpath:mybatis/**/*Mapper.xml
+  #type-aliases-package: com.sfm.ws.*.entity
+  typeAliasesPackage: com.rainotes.erp.domain
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/erp?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+logging:
+  level:
+    com:
+      spring:
+        jiminshiro:
+          mapper:
+            debug

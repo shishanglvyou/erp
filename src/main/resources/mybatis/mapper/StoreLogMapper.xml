@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rainotes.erp.dao.StoreLogMapper">
+  <resultMap id="BaseResultMap" type="com.rainotes.erp.domain.StoreLog">
+    <id column="log_id" jdbcType="INTEGER" property="logId" />
+    <result column="emp_id" jdbcType="INTEGER" property="empId" />
+    <result column="order_detail_id" jdbcType="INTEGER" property="orderDetailId" />
+    <result column="store_id" jdbcType="INTEGER" property="storeId" />
+    <result column="oper_time" jdbcType="DATE" property="operTime" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    log_id, emp_id, order_detail_id, store_id, oper_time, num, type
+  </sql>
+  <select id="selectByExample" parameterType="com.rainotes.erp.domain.StoreLogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from store_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from store_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from store_log
+    where log_id = #{logId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.rainotes.erp.domain.StoreLogExample">
+    delete from store_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.rainotes.erp.domain.StoreLog">
+    insert into store_log (log_id, emp_id, order_detail_id, 
+      store_id, oper_time, num, 
+      type)
+    values (#{logId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, #{orderDetailId,jdbcType=INTEGER}, 
+      #{storeId,jdbcType=INTEGER}, #{operTime,jdbcType=DATE}, #{num,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.rainotes.erp.domain.StoreLog">
+    insert into store_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        log_id,
+      </if>
+      <if test="empId != null">
+        emp_id,
+      </if>
+      <if test="orderDetailId != null">
+        order_detail_id,
+      </if>
+      <if test="storeId != null">
+        store_id,
+      </if>
+      <if test="operTime != null">
+        oper_time,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logId != null">
+        #{logId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="orderDetailId != null">
+        #{orderDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="operTime != null">
+        #{operTime,jdbcType=DATE},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.rainotes.erp.domain.StoreLogExample" resultType="java.lang.Long">
+    select count(*) from store_log
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update store_log
+    <set>
+      <if test="record.logId != null">
+        log_id = #{record.logId,jdbcType=INTEGER},
+      </if>
+      <if test="record.empId != null">
+        emp_id = #{record.empId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderDetailId != null">
+        order_detail_id = #{record.orderDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="record.storeId != null">
+        store_id = #{record.storeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.operTime != null">
+        oper_time = #{record.operTime,jdbcType=DATE},
+      </if>
+      <if test="record.num != null">
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update store_log
+    set log_id = #{record.logId,jdbcType=INTEGER},
+      emp_id = #{record.empId,jdbcType=INTEGER},
+      order_detail_id = #{record.orderDetailId,jdbcType=INTEGER},
+      store_id = #{record.storeId,jdbcType=INTEGER},
+      oper_time = #{record.operTime,jdbcType=DATE},
+      num = #{record.num,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.rainotes.erp.domain.StoreLog">
+    update store_log
+    <set>
+      <if test="empId != null">
+        emp_id = #{empId,jdbcType=INTEGER},
+      </if>
+      <if test="orderDetailId != null">
+        order_detail_id = #{orderDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=INTEGER},
+      </if>
+      <if test="operTime != null">
+        oper_time = #{operTime,jdbcType=DATE},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.rainotes.erp.domain.StoreLog">
+    update store_log
+    set emp_id = #{empId,jdbcType=INTEGER},
+      order_detail_id = #{orderDetailId,jdbcType=INTEGER},
+      store_id = #{storeId,jdbcType=INTEGER},
+      oper_time = #{operTime,jdbcType=DATE},
+      num = #{num,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER}
+    where log_id = #{logId,jdbcType=INTEGER}
+  </update>
+</mapper>
