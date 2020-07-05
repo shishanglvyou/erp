@@ -24,6 +24,5 @@
     -->
     <constant name="struts.convention.exclude.parentClassLoader" value="false"/>
 
-    <package name="root" namespace="/" extends="struts-default">
-    </package>
+    <include file="struts_emp.xml"/>
 </struts>

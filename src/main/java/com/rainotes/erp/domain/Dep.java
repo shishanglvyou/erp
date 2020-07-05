@@ -1,5 +1,8 @@
 package com.rainotes.erp.domain;
 
+import lombok.Data;
+
+@Data
 public class Dep {
     private Integer depId;
 
