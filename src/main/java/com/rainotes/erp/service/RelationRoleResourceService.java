@@ -1,6 +1,6 @@
 package com.rainotes.erp.service;
 
-import com.rainotes.erp.entity.Dep;
+import com.rainotes.erp.entity.RelationRoleResource;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author testjava
  * @since 2020-09-21
  */
-public interface DepService extends IService<Dep> {
+public interface RelationRoleResourceService extends IService<RelationRoleResource> {
 
 }
